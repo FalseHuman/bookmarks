@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.80.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">
+
+    
+
+    <!-- Bootstrap core CSS -->
+<link href="https://getbootstrap.com/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <!-- Favicons -->
+<link rel="apple-touch-icon" href="https://getbootstrap.com/docs/5.0/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="https://getbootstrap.com/docs/5.0/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="https://getbootstrap.com/docs/5.0/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="manifest" href="https://getbootstrap.com/docs/5.0/assets/img/favicons/manifest.json">
+<link rel="mask-icon" href="https://getbootstrap.com/docs/5.0/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3">
+<link rel="icon" href="https://getbootstrap.com/docs/5.0/assets/img/favicons/favicon.ico">
+<meta name="theme-color" content="#7952b3">
+
+<style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+    
+  </style>
+
+  
+  <!-- Custom styles for this template -->
+  <link href="https://getbootstrap.com/docs/5.0/examples/sign-in/signin.css" rel="stylesheet">
+ </head>
+ <body>
+{% if messages %}
+  {% for message in messages %}
+    {% if message.tags == 'success' %}
+    <div class="alert alert-success"" role="alert" style="position: fixed; top: 10%; left: 35%;">
+        {{ message|safe }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% else %}
+    <div class="alert alert-danger" role="alert" style="position: fixed; top: 10%; left: 35%;">
+        {{ message|safe }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div> 
+{% endif %}
+{% endfor %}
+{% endif %}
+  <nav class="navbar navbar-expand-md navbar-white bg-white fixed-top ps-5">
+    <div class="container-fluid">
+      <a class="navbar-brand" style="color: black;">
+        <img src="https://getbootstrap.com/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" class="d-inline-block align-top">
+        Bookmarks
+      </a>
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          {% if request.user.is_authenticated %}
+          <li {% if section == "dashboard" %} class="nav-item"{% endif %}>
+            <a class="nav-link" href="{% url "dashboard" %}" style="color: black;">Моя страница</a>
+          </li>
+          <li {% if section == "image" %} class="nav-item"{% endif %}>
+            <a class="nav-link" href="#}" style="color: black;">Фотографии</a>
+          </li>
+          <li {% if section == "people" %} class="nav-item"{% endif %}>
+            <a class="nav-link" href="#}" style="color: black;">Друзья</a>
+          </li>
+          {% endif %}
+
+         {% if request.user.is_authenticated %}
+         <li class="nav-item dropdown" style=" position: fixed; top: 1,5%; left: 88%;">
+          <a class="nav-link" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: black;">
+            {{ request.user.first_name }}
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item pt-0 pb-0" href="{% url "password_change" %}"">Сменить пароль</a></li>
+            <li><a class="dropdown-item pt-0 pb-0" href="{% url "edit" %}"">Редактировать<br>профиль</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item pt-0 pb-0" href="{% url "logout" %}"">Выйти</a></li>
+          </ul>
+        </li>
+         {% else %}
+         <!--<span style=" position: fixed; top: 1.5%; left: 88%;">
+          <a href="{% url "login" %}" class="nav-link" style="color: black;">Войти</a>
+         </span>-->
+         {% endif %}
+      </ul>
+         </div>
+    </div>
+  </nav>
+ <div id="content">
+ {% block content %}{% endblock %}
+ </div>
+ <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
+ </body>
+</html>

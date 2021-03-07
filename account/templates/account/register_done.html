@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Добро пожаловать!{% endblock %}
+{% block content %}
+<div class="pt-3 pb-3 ps-3 pe-3 me-2" style="background-color: white; display:inline-block;   position: fixed; top: 20%; left: 30%;">
+ <h1>Добро пожаловать {{ new_user.first_name }}!</h1>
+ <p>Ваша учетная запись успешно создана.
+    Теперь вы можете<a href="{% url "login" %}"> Войти</a>.</p>
+</div>
+{% endblock %}

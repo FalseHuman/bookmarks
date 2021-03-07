@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}Вы вышли из аккаунта | Bookmarks {% endblock %}
+{% block content %}
+<div class="pt-5 pb-5 ps-5 pe-5" style="background-color: white; display:inline-block;   position: fixed; top: 20%; left: 40%;">
+<p>Вы вышли!</p>
+<a href="{% url "login" %}"><button class="btn mt-1 ms-2"  type="submit" value="Log in" style="background-color: rgb(81 129 184); color: white;">Войти</button></a>
+</div>
+{% endblock %}

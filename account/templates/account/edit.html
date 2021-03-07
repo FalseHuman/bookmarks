@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Редактировать профиль{% endblock %}
+{% block content %}
+<div class="pt-3 pb-3 ps-3 pe-3 me-2" style="background-color: white; display:inline-block;   position: fixed; top: 20%; left: 25%;">
+ <h1>Редактировать профиль</h1>
+ <p>Вы можете отредактировать свою учетную запись, используя следующую форму:</p>
+ <form action="." method="post" enctype="multipart/form-data">
+ {{ user_form.as_p }}
+ {{ profile_form.as_p }}
+ {% csrf_token %}
+ <button class="btn mt-2"  type="submit" value="Save changes" style="background-color: rgb(81 129 184); color: white;">Сохранить</button>
+ </form>
+ </div>
+{% endblock %}

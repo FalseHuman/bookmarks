@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Регистрация{% endblock %}
+{% block content %}
+<div class="pt-3 pb-3 ps-2 me-2" style="background-color: white; display:inline-block;   position: fixed; top: 20%; left: 15%;">
+ <h1>Создать учетную запись</h1>
+ <p>Пожалуйста, зарегистрируйтесь, используя следующую форму:</p>
+ <form action="." method="post">
+ {{ user_form.as_p }}
+ {% csrf_token %}
+ <button class="btn mt-2"  type="submit" value="Create my account" style="background-color: rgb(81 129 184); color: white;">Создать</button>
+ </form>
+</div>
+{% endblock %}

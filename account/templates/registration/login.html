@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Добро пожаловать | Bookmarks {% endblock %}
+{% block content %}
+ {% if form.errors %}
+ <p>Ваше имя пользователя и пароль не совпадают.Пожалуйста, попробуйте еще раз.</p>
+ {% endif %}
+ <div class="pt-3 pb-3 ps-2 me-2" style="background-color: white; display:inline-block;   position: fixed; top: 10%; left: 80%;">
+
+    <form action="." method="post" >
+        <p class="mb-1">Логин:</p>
+        {{ form.username }}
+        <p class="mt-1 mb-1">Пароль:</p>
+        {{ form.password }}
+        {% csrf_token %}
+        <button class="btn mt-2"  type="submit" value="Log in" style="background-color: rgb(81 129 184); color: white;">Войти</button>
+    </form>
+    <p class="mb-0 mt-1"><a href="{% url "password_reset" %}"> Забыли пароль?</a></p>
+    <p class="mb-0 mt-1"><a href="{% url "register" %}">Зарегистрироваться</a></p>
+</div>
+
+{% endblock %}
