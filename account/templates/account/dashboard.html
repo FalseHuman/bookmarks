@@ -1,5 +1,15 @@
 {% extends "base.html" %}
-{% block title %}{{ user.first_name }} {{ user.last_name }}{% endblock %}
+{% block title %}{{user.first_name}} {{user.last_name}} | Инструментальная панель{% endblock %}
 {% block content %}
-<p>{{ user.first_name }} {{ user.last_name }}</p>
+<div class="pt-2 pb-2 ps-2 pe-2 me-2" style="background-color: white; display:inline-block;   position: fixed; top: 10%; left: 23%;">
+ <h3>Инструментальная панель</h3>
+ {% with total_images_created=request.user.images_created.count %}
+ <p>{{user.first_name}}, добро пожаловать на вашу приборную панель. У вас есть закладки количестве:
+ {{total_images_created }}шт.</p>
+ {% endwith %}
+ <p>Перетащите следующую кнопку на панель инструментов закладок, чтобы добавить в закладки изображения
+    с других веб-сайтов
+ <a href="javascript:{% include "bookmarklet_launcher.js" %}" class="btn  ms-1 mt-2" style="background-color: rgb(81 129 184); color: white;"> Добавить в закладки</a>
+ <p>
+ </div>
 {% endblock %}

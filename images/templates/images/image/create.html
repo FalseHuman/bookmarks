@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Закладка изображения{% endblock %}
+{% block content %}
+<div class="pt-3 pb-3 ps-3 pe-3 me-2" style="background-color: white; display:inline-block;   position: fixed; top: 10%; left: 30%;">
+ <h3>Закладка изображения</h3>
+ <img src="{{ request.GET.url }}" class="image-preview mb-2" width="200px" height="200px">
+ <form action="." method="post">
+     {{form.as_p}}
+ {% csrf_token %}
+ <button class="btn mt-2"  type="submit" value="Bookmark it!" style="background-color: rgb(81 129 184); color: white;"> Добавить в закладки</button>
+ </form>
+</div>
+
+{% endblock %}

@@ -2,12 +2,15 @@
 {% block title %}Добро пожаловать | Bookmarks {% endblock %}
 {% block content %}
  {% if form.errors %}
- <p>Ваше имя пользователя и пароль не совпадают.Пожалуйста, попробуйте еще раз.</p>
+ <div class="alert alert-danger" role="alert" style="position: fixed; top: 10%; left: 20%;">
+    Ваше имя пользователя и пароль не совпадают.Пожалуйста, попробуйте еще раз.
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div> 
  {% endif %}
  <div class="pt-3 pb-3 ps-2 me-2" style="background-color: white; display:inline-block;   position: fixed; top: 10%; left: 80%;">
 
     <form action="." method="post" >
-        <p class="mb-1">Логин:</p>
+        <p class="mb-1">Логин(имя пользователя или e-mail):</p>
         {{ form.username }}
         <p class="mt-1 mb-1">Пароль:</p>
         {{ form.password }}

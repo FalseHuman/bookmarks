@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Лента фотографии{% endblock %}
+
+{% block content %}
+<div class="mt-2" style=" position: fixed; top: 5%; left: 30%;">
+  <p></p>
+  <div id="image-list" style="position: static; width: 100%; height: 650px; overflow-y: scroll;">
+    {% include "images/image/list_ajax.html" %}
+  </div>
+</div>
+{% endblock %}
+
+{% block domready %}
+  var page = 1;
+  var empty_page = false;
+  var block_request = false;
+
+  $(window).scroll(function() {
+    var margin = $(document).height() - $(window).height() - 200;
+    if  ($(window).scrollTop() > margin && empty_page == false && block_request == false) {
+     block_request = true;
+      page += 1;
+      $.get('?page=' + page, function(data) {
+       if(data == '') {
+          empty_page = true;
+        }
+        else {
+          block_request = false;
+          $('#image-list').append(data);
+        }
+      });
+    }
+  });
+{% endblock %}
