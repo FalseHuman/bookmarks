@@ -3,11 +3,11 @@
 {% block title %}{{ image.title }}{% endblock %}
 
 {% block content %}
-<div class="pt-3 pb-3 ps-3 pe-3 me-2" style="background-color: white; display:inline-block;   position: fixed; top: 10%; left: 30%;">
+<div class="pt-1 pb-1 ps-3 pe-3 me-2" style="background-color: white; position: fixed; top: 10%; left:30%;">
   <h1>{{ image.title }}</h1>
   {% load thumbnail %}
   
-  {% thumbnail image.image "300" as im %}
+  {% thumbnail image.image "500" as im %}
     <a href="{{ image.image.url }}">
       <img src="{{ im.url }}" class="image-detail">
     </a>
@@ -17,14 +17,17 @@
     <div class="image-info">
       <div>
         <span class="count">
+          <span class="count">
+            Просмотренно: {{ total_views }} раз<br>
+           </span>
          <span class="total">{{ total_likes }}</span>
-         like{{ total_likes|pluralize }}
+         нравится
         </span>
-        <a href="#" data-id="{{ image.id }}" data-action="{% if request.user in users_like %}un{% endif %}like" class="like button">
+        <a href="#" data-id="{{ image.id }}" data-action="{% if request.user in users_like %}un{% endif %}like" class="like button btn btn-primary mt-1">
           {% if request.user not in users_like %}
-            Like
+          Like
           {% else %}
-            Unlike
+          Unlike
           {% endif %}
         </a>
       </div>
@@ -32,12 +35,12 @@
     </div>
     <div class="image-likes">
       {% for user in image.users_like.all %}
-        <div>
+        <!--<div>
             <img src="{{ user.profile.photo.url }}" width="25" height="25">
           <p>{{ user.first_name }}</p>
-        </div>
+        </div>-->
       {% empty %}
-        Nobody likes this image yet.
+        Никто ещё не поставил лайк будьте первыми.
       {% endfor %}
     </div>
 </div>

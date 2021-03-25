@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+{% block title %}Друзья{% endblock %}
+{% block content %}
+<div class="container marketing">
+<div class="row">
+    <div class="col-lg-4"></div>
+    <div class="col-lg-4 mb-2">
+        {% for user in users %}
+        {% thumbnail user.profile.photo "320x320" crop="100%" as im %}
+        <img src="{{ im.url }}" class="bd-placeholder-img rounded-circle mb-2" width="140" height="140">
+        <a href="{{ user.get_absolute_url }}">
+            {{ user.get_full_name }}
+        </a>
+        {% endthumbnail %}
+        {% endfor %}
+    </div>
+
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Рейтинг картинок{% endblock %}
+ {% block content %}
+ <div class="pt-1 pb-1 ps-3 pe-3 me-2" style="background-color: white; position: fixed; top: 10%; left:30%;">
+ <h1>Рейтинг картинок</h1>
+ <div id="image-list" style="position: static; width: 100%; height: auto; overflow-y: scroll;">
+ <ol>
+ {% for image in most_viewed %}
+ <li>
+ <a href="{{ image.get_absolute_url }}">{{ image.title }}</a>
+ </li>
+ {% endfor %}
+ </ol>
+ </div>
+ </div>
+{% endblock %}

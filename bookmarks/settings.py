@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     'account.apps.AccountConfig',
     'django.contrib.admin',
+    'django.db.models.signals',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'images.apps.ImagesConfig',
     'sorl.thumbnail',
+    'actions.apps.ActionsConfig',
 ]
 
 MIDDLEWARE = [
@@ -133,3 +135,12 @@ LOGOUT_URL = 'logout'
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+from django.urls import reverse_lazy
+ABSOLUTE_URL_OVERRIDES = {
+ 'auth.user': lambda u: reverse_lazy('user_detail', args=[u.username])
+}
+
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
+REDIS_DB = 0
